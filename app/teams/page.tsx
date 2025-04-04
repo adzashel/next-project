@@ -4,6 +4,8 @@ type teamData = {
   name: string;
   avatar: string;
   stack: string;
+  email : string;
+  phone : string;
   id: number;
 };
 
@@ -30,11 +32,14 @@ const teams = async () => {
         <div className="card-container mt-5 ml-5">
           {datas.map((data) => (
             <div className="card" key={data.id}>
-              <img src={data.avatar} className="card-image" alt={data.name} />
-              <Link className="category" href={`/${data.id}`}>
-                {data.name}
+              <div className="card-border-top">
+              </div>
+              <img className="img" src={ data.avatar }>
+              </img>
+              <span> { data.name }</span>
+              <p className="job"> { data.stack }</p>
+              <Link className="detail-btn" href={`/${data.id}`}> Click
               </Link>
-              <div className="heading">{data.stack}</div>
             </div>
           ))}
         </div>
