@@ -6,11 +6,11 @@ type teamData = {
     stack: string;
     email: string;
     phone: string;
-    id: number;
+    id: string;
 }
 
 
-const getMemberDetail = async (id: number): Promise<teamData | null> => {
+const getMemberDetail = async (id: string): Promise<teamData | null> => {
     try {
         const response = await fetch(`https://67e5832118194932a5865cf4.mockapi.io/teams/${id}`);
         if (!response.ok) {
@@ -22,11 +22,13 @@ const getMemberDetail = async (id: number): Promise<teamData | null> => {
     } catch (e) {
         console.error("error while fetching", e);
         return null;
+    }finally {
+        console.log("ok")
     }
 }
 
 
-const detailPage = async ({ params }: { params: { id: number } }) => {
+const detailPage = async ({ params }: { params: { id: string } }) => {
     const team = await getMemberDetail(params.id);
 
     if (!team) {
@@ -62,6 +64,7 @@ const detailPage = async ({ params }: { params: { id: number } }) => {
                             </svg>
                         </Link>
                     </div>
+            {/* <Link href='/update' className="btn-detail">update contact</Link> */}
             </article>
         </div>
 

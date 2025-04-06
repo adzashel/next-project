@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   --background: #ffffff;
@@ -25,8 +26,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -34,8 +33,7 @@ body {
   margin: 1rem 3rem;
 }
 
-
-/* From Uiverse.io by Nawsome */ 
+/* From Uiverse.io by Nawsome */
 .loader {
   position: relative;
   width: 240px;
@@ -55,7 +53,14 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(110deg, rgba(227, 227, 227, 0) 0%, rgba(227, 227, 227, 0) 40%, rgba(227, 227, 227, 0.5) 50%, rgba(227, 227, 227, 0) 60%, rgba(227, 227, 227, 0) 100%);
+  background: linear-gradient(
+    110deg,
+    rgba(227, 227, 227, 0) 0%,
+    rgba(227, 227, 227, 0) 40%,
+    rgba(227, 227, 227, 0.5) 50%,
+    rgba(227, 227, 227, 0) 60%,
+    rgba(227, 227, 227, 0) 100%
+  );
   animation: gradient-animation_2 1.2s linear infinite;
 }
 
@@ -126,31 +131,33 @@ form {
   margin: 1em;
 }
 
-/* From Uiverse.io by Jaareet */ 
+/* From Uiverse.io by Jaareet */
 .input {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   font-weight: 500;
-  font-size: .8vw;
+  font-size: 0.8vw;
   color: #fff;
-  background-color: rgb(28,28,30);
-  box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 0.4vw rgba(0, 0, 0, 0.5), 0 0 0 0.15vw transparent;
   border-radius: 0.4vw;
   border: none;
   outline: none;
   padding: 0.4vw;
   max-width: 190px;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .input:hover {
-  box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+  box-shadow: 0 0 0 0.15vw rgba(135, 207, 235, 0.186);
 }
 
 .input:focus {
-  box-shadow: 0 0 0 .15vw skyblue;
+  box-shadow: 0 0 0 0.15vw skyblue;
 }
 
-/* From Uiverse.io by gharsh11032000 */ 
+/* From Uiverse.io by gharsh11032000 */
 .button {
   cursor: pointer;
   margin: 1em;
@@ -162,11 +169,11 @@ form {
   border-radius: 34px;
   background-color: transparent;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
 }
 
-/* From Uiverse.io by Yaya12085 */ 
+/* From Uiverse.io by Yaya12085 */
 .container {
   width: 100%;
   display: flex;
@@ -175,11 +182,21 @@ form {
   margin: 2em auto;
 }
 .form-container {
-  width: 320px;
+  width: 620px;
   border-radius: 0.75rem;
   background-color: rgba(17, 24, 39, 1);
   padding: 2rem;
   color: rgba(243, 244, 246, 1);
+}
+
+.form-wrapper {
+  width: 420px;
+  border-radius: 0.75rem;
+  background-color: rgba(17, 24, 39, 1);
+  padding: 2rem;
+  color: rgba(243, 244, 246, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -189,9 +206,17 @@ form {
   font-weight: 700;
 }
 
-.form {
+.form- {
   margin-top: 1.5rem;
 }
+
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+
 
 .input-group {
   margin-top: 0.25rem;
@@ -203,10 +228,12 @@ form {
   display: block;
   color: rgba(156, 163, 175, 1);
   margin-bottom: 4px;
+  width: 150px;
 }
 
 .input-group input {
   width: 100%;
+  margin-bottom: 1rem;
   border-radius: 0.375rem;
   border: 1px solid rgba(55, 65, 81, 1);
   outline: 0;
@@ -224,17 +251,19 @@ form {
   justify-content: flex-end;
   font-size: 0.75rem;
   line-height: 1rem;
-  color: rgba(156, 163, 175,1);
+  color: rgba(156, 163, 175, 1);
   margin: 8px 0 14px 0;
 }
 
-.forgot a,.signup a {
+.forgot a,
+.signup a {
   color: rgba(243, 244, 246, 1);
   text-decoration: none;
   font-size: 14px;
 }
 
-.forgot a:hover, .signup a:hover {
+.forgot a:hover,
+.signup a:hover {
   text-decoration: underline rgba(167, 139, 250, 1);
 }
 
@@ -248,6 +277,7 @@ form {
   border: none;
   border-radius: 0.375rem;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .social-message {
@@ -296,54 +326,51 @@ form {
   color: rgba(156, 163, 175, 1);
 }
 
-
-
-
-/* From Uiverse.io by alexmaracinaru */ 
+/* From Uiverse.io by alexmaracinaru */
 .card {
   width: 190px;
   height: 254px;
   background: #3405a3;
   border-radius: 15px;
   box-shadow: 1px 5px 60px 0px #100a886b;
- }
- 
- .card .card-border-top {
+}
+
+.card .card-border-top {
   width: 60%;
   height: 3%;
   background: #6b64f3;
   margin: auto;
   border-radius: 0px 0px 15px 15px;
- }
- 
- .card span {
+}
+
+.card span {
   font-weight: 600;
   color: white;
   text-align: center;
   display: block;
   padding-top: 10px;
   font-size: 16px;
- }
- 
- .card .job {
+}
+
+.card .job {
   font-weight: 400;
   color: white;
   display: block;
   text-align: center;
   padding-top: 3px;
   font-size: 12px;
- }
- 
- .card .img {
+}
+
+.card .img {
   width: 70px;
   height: 80px;
   background: #6b64f3;
   border-radius: 15px;
   margin: auto;
   margin-top: 25px;
- }
- 
- .card .detail-btn {
+}
+
+.card .detail-btn {
   padding: 8px 25px;
   display: inline-block;
   margin: auto 3em;
@@ -353,119 +380,118 @@ form {
   background: #6b64f3;
   color: white;
   font-weight: 600;
- }
- 
- .card .detail-btn:hover {
-  background: #534bf3;
- }
+}
 
- @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.card .detail-btn:hover {
+  background: #534bf3;
+}
 
 *,
 *:before,
 *:after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Some basic CSS overrides */
 .card-wrapper {
-	line-height: 1.5;
+  line-height: 1.5;
   /* margin: 1rem auto; */
-	min-height: 100vh;
-	font-family: "Be Vietnam Pro", sans-serif;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #060606;
+  min-height: 100vh;
+  font-family: "Be Vietnam Pro", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #060606;
 }
 
 button,
 input,
 select,
 textarea {
-	font: inherit;
+  font: inherit;
 }
 
 a {
-	color: inherit;
+  color: inherit;
 }
 /* End basic CSS override */
 
 .profile {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	padding: 3rem;
-	width: 90%;
-	max-width: 300px;
-	background-color: #1b2028;
-	border-radius: 16px;
-	position: relative;
-	border: 3px solid transparent;
-	background-clip: padding-box;
-	text-align: center;
-	color: #f1f3f3;
-	background-image: linear-gradient(
-		135deg,
-		rgba(#752e7c, 0.35),
-		rgba(#734a58, 0.1) 15%,
-		#1b2028 20%,
-		#1b2028 100%
-	);
-	&:after {
-		content: "";
-		display: block;
-		top: -3px;
-		left: -3px;
-		bottom: -3px;
-		right: -3px;
-		z-index: -1;
-		position: absolute;
-		border-radius: 16px;
-		background-image: linear-gradient(
-			135deg,
-			#752e7c,
-			#734a58 20%,
-			#1b2028 30%,
-			#2c333e 100%
-		);
-	}
+  display: flex;
+  align-items: center;
+  height: 500px;
+  flex-direction: column;
+  padding: 3rem;
+  width: 90%;
+  max-width: 300px;
+  background-color: #1b2028;
+  border-radius: 16px;
+  position: relative;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  text-align: center;
+  color: #f1f3f3;
+  background-image: linear-gradient(
+    135deg,
+    rgba(#752e7c, 0.35),
+    rgba(#734a58, 0.1) 15%,
+    #1b2028 20%,
+    #1b2028 100%
+  );
+  &:after {
+    content: "";
+    display: block;
+    top: -3px;
+    left: -3px;
+    bottom: -3px;
+    right: -3px;
+    z-index: -1;
+    position: absolute;
+    border-radius: 16px;
+    background-image: linear-gradient(
+      135deg,
+      #752e7c,
+      #734a58 20%,
+      #1b2028 30%,
+      #2c333e 100%
+    );
+  }
 }
 
 .profile-image {
-	border-radius: 50%;
-	overflow: hidden;
-	width: 175px;
-	height: 175px;
-	position: relative;
-	img {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 100%;
-	}
+  border-radius: 50%;
+  overflow: hidden;
+  width: 175px;
+  height: 175px;
+  position: relative;
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
 }
 
 .profile-username {
-	font-size: 1.5rem;
-	font-weight: 600;
-	margin-top: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
 }
 
 .profile-user-handle {
-	color: #7d8396;
+  color: #7d8396;
 }
 
 .profile-actions {
-	margin-top: 1.5rem;
-	display: flex;
+  margin-top: 1.5rem;
+  display: flex;
   flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	& > * {
-		margin: 0 0.25rem;
-	}
+  align-items: center;
+  justify-content: center;
+  & > * {
+    margin: 0 0.25rem;
+  }
 }
 
 .links {
@@ -473,66 +499,64 @@ a {
   gap: 1rem;
 }
 .btn {
-	border: 0;
-	background-color: transparent;
-	padding: 0;
-	height: 46px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	line-height: 1;
-	transition: 0.15s ease;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  transition: 0.15s ease;
 
-	&--primary {
-		border-radius: 99em;
-		background-color: #3772ff;
-		background-image: linear-gradient(135deg, #5587ff, #3772ff);
-		color: #fff;
-		padding: 0 1.375em;
-		&:hover,
-		&:focus {
-			background-size: 150%;
-		}
-	}
+  &--primary {
+    border-radius: 99em;
+    background-color: #3772ff;
+    background-image: linear-gradient(135deg, #5587ff, #3772ff);
+    color: #fff;
+    padding: 0 1.375em;
+    &:hover,
+    &:focus {
+      background-size: 150%;
+    }
+  }
 
-	&--icon {
-		height: 46px;
-		width: 46px;
-		border-radius: 50%;
-		border: 3px solid #343945;
-		color: #7d8396;
-		i {
-			font-size: 1.25em;
-		}
+  &--icon {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    border: 3px solid #343945;
+    color: #7d8396;
+    i {
+      font-size: 1.25em;
+    }
 
-		&:hover,
-		&:focus {
-			border-color: #7d8396;
-		}
-	}
+    &:hover,
+    &:focus {
+      border-color: #7d8396;
+    }
+  }
 }
 
-
 .profile-links {
-	margin-top: 3.5rem;
+  margin-top: 3.5rem;
 }
 
 .btn-detail {
   border-radius: 99em;
-		background-color: #3772ff;
-		background-image: linear-gradient(135deg, #5587ff, #3772ff);
-		color: #fff;
-		padding:0.375em 1.375em;
-
+  background-color: #3772ff;
+  background-image: linear-gradient(135deg, #5587ff, #3772ff);
+  color: #fff;
+  padding: 0.375em 1.375em;
 }
 
 .link {
-	text-decoration: none;
-	color: #7d8396;
-	margin-left: 0.375rem;
-	margin-right: 0.375rem;
-	i {
-		font-size: 1.25em;
-	}
+  text-decoration: none;
+  color: #7d8396;
+  margin-left: 0.375rem;
+  margin-right: 0.375rem;
+  i {
+    font-size: 1.25em;
+  }
 }
