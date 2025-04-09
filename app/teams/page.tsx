@@ -38,7 +38,7 @@ const teams = async () => {
               </img>
               <span> { data.name }</span>
               <p className="job"> { data.stack }</p>
-              <Link className="detail-btn" href={`/${data.id}`}> Click
+              <Link className="detail-btn" href={`/teams/${data.id}`}> Click
               </Link>
             </div>
           ))}

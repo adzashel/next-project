@@ -64,7 +64,7 @@ const detailPage = async ({ params }: { params: { id: string } }) => {
                             </svg>
                         </Link>
                     </div>
-            {/* <Link href='/update' className="btn-detail">update contact</Link> */}
+            <Link href={`/teams/${ team.id }/update`} className="btn-detail">update contact</Link>
             </article>
         </div>
 
