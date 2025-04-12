@@ -2,6 +2,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
+
+
 interface update {
     name : string;
     avatar : string;
@@ -15,7 +17,6 @@ const apiEndpoint = "https://67e5832118194932a5865cf4.mockapi.io/teams";
 const update = async ({ params }: { params: { id: string } }) => {
     const { id } =  params;
     console.log("the id = ", id);
-
         const updateData = async (formData: FormData) => {
             "use server"
 
