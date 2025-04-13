@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
 const apiEndpoint = "https://67e5832118194932a5865cf4.mockapi.io/teams";
 
 type teamData = {
@@ -32,26 +33,31 @@ const getMemberDetail = async (id: string): Promise<teamData | null> => {
 
 const detailPage = async ({ params }: { params: { id: string } }) => {
     const team = await getMemberDetail(params.id);
-    const { id } = await params;
-    console.log(id)
+    const { id } = params;
+    console.log(id);
 
-    const deleteData = async( formData : FormData) => {
+    const handleDelete = async( formData : FormData ) => {
         "use server"
 
-        const idToDelete = formData.get('id') as string;
+        const id = formData.get('id') ;
+        if(typeof id !== "string") {
+            console.log("Invalid ID PRovided");
+            return;
+        }
         try {
-            const response = await fetch(`${ apiEndpoint }/${ idToDelete }` , {
-                method : "DELETE",
+            const response = await fetch(`${ apiEndpoint }/${ id }` , {
+                method : "DELETE"
             });
-
             if(!response.ok) {
-                console.log("error deleting data");
-            } 
-            revalidatePath('/teams');
+                console.log('error deleting data');
+            }
+            revalidatePath('/teams')
+            redirect("/teams")
         }catch(e) {
-            console.error(e);
+            console.error('error response' , e);
         }
     }
+
     if (!team) {
         return <div>No member found</div>
     }
@@ -86,7 +92,7 @@ const detailPage = async ({ params }: { params: { id: string } }) => {
                     </Link>
                 </div>
                 <Link href={`/teams/${team.id}/update`} className="btn-detail">update contact</Link>
-                <form action={deleteData}>
+                <form action={handleDelete}>
                 <input type="hidden" name="id" value={team.id} /> 
                     <button type="submit" className="btn-detail">
                         Delete contact
