@@ -1,61 +1,14 @@
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { deleteData , getMemberDetail} from "@/app/main-logic";
 
-const apiEndpoint = "https://67e5832118194932a5865cf4.mockapi.io/teams";
-
-type teamData = {
-    name: string;
-    avatar: string;
-    stack: string;
-    email: string;
-    phone: string;
-    id: string;
-}
-
-
-const getMemberDetail = async (id: string): Promise<teamData | null> => {
-    try {
-        const response = await fetch(`https://67e5832118194932a5865cf4.mockapi.io/teams/${id}`);
-        if (!response.ok) {
-            return null;
-        }
-
-        const teamDetail = await response.json();
-        return teamDetail;
-    } catch (e) {
-        console.error("error while fetching", e);
-        return null;
-    } finally {
-        console.log("ok")
-    }
-}
 
 const detailPage = async ({ params }: { params: { id: string } }) => {
     const team = await getMemberDetail(params.id);
-    const { id } = params;
-    console.log(id);
-
-    const handleDelete = async( formData : FormData ) => {
+    const handleDelete = async () => {
         "use server"
-
-        const id = formData.get('id') ;
-        if(typeof id !== "string") {
-            console.log("Invalid ID PRovided");
-            return;
-        }
-        try {
-            const response = await fetch(`${ apiEndpoint }/${ id }` , {
-                method : "DELETE"
-            });
-            if(!response.ok) {
-                console.log('error deleting data');
-            }
-            revalidatePath('/teams')
-            redirect("/teams")
-        }catch(e) {
-            console.error('error response' , e);
-        }
+        const formData = new FormData();
+        formData.append('id', team?.id ?? ""); // use optional chaining and null coalish in case team.id is null
+        await deleteData(formData);
     }
 
     if (!team) {
@@ -64,8 +17,8 @@ const detailPage = async ({ params }: { params: { id: string } }) => {
     return (
         <div className="card-wrapper">
             <article className="profile">
-                <div className="profile-image">
-                    <img src={team.avatar} />
+                < div className="profile-image">
+                    <img src={team.avatar}></img>
                 </div>
                 <h2 className="profile-username">{team.name}</h2>
                 <small className="profile-user-handle">{team.email}</small>
@@ -91,13 +44,15 @@ const detailPage = async ({ params }: { params: { id: string } }) => {
                         </svg>
                     </Link>
                 </div>
-                <Link href={`/teams/${team.id}/update`} className="btn-detail">update contact</Link>
-                <form action={handleDelete}>
-                <input type="hidden" name="id" value={team.id} /> 
-                    <button type="submit" className="btn-detail">
-                        Delete contact
-                    </button>
-                </form>
+                <div className="change-btn">
+                    <Link href={`/teams/${team.id}/update`} className="btn-update">update contact</Link>
+                    <form action={handleDelete}>
+                        <input type="hidden" name="id" value={team.id} />
+                        <button type="submit" className="btn-delete">
+                            Delete contact
+                        </button>
+                    </form>
+                </div>
             </article>
         </div>
 

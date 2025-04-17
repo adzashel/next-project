@@ -36,7 +36,6 @@ const add = () => {
             throw new Error('error while adding new data')
         }
         const newMember = await response.json();
-        console.log(newMember)
         revalidatePath('/teams');
         redirect('/teams');
     }
