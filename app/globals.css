@@ -578,6 +578,7 @@ a {
   background-color: #3772ff;
   width: 150px;
   padding: 10px;
+  cursor: pointer;
   border-radius: 99em;
 }
 

@@ -1,7 +1,9 @@
 // "use client"
 import { updateData, getMemberDetail } from '@/app/main-logic';
-import Swal from "sweetalert2";
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import React from 'react';
+import Swal from 'sweetalert2';
 
 interface updateProps {
     params: { id: string }
@@ -18,17 +20,14 @@ interface update {
 
 
 const update: React.FC<updateProps> = async ({ params }) => {
-    const memberDetail = await getMemberDetail(params.id)
-    const { id } = params;
+    const { id } = await params;
+    const memberDetail = await getMemberDetail( id )
 
     const handleSubmit = async (formData: FormData) => {
         "use server"
-        try {
-            await updateData(id, formData);
-        } catch {
-            console.log('error updating data');
-            return;
-        }
+        await updateData(id, formData);
+        revalidatePath('/teams/' + id);
+        redirect('/teams/' + id)
     }
 
     return (

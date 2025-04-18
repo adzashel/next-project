@@ -2,7 +2,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 
-
+const apiEndpoint = "https://67e5832118194932a5865cf4.mockapi.io/teams";
 interface teamData {
     name: string;
     avatar: string;
@@ -10,6 +10,40 @@ interface teamData {
     email: string;
     phone: string;
     id: string;
+}
+
+
+// function to add new Data 
+
+const newData = async (formData: FormData) => {
+    "use server"
+
+    const name = formData.get('name');
+    const avatar = formData.get('avatar');
+    const email = formData.get('email');
+    const stack = formData.get('stack');
+
+    try {
+        const response = await fetch(apiEndpoint, {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                stack,
+                avatar
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('error while adding new Data');
+        }
+        const newData: teamData[] = await response.json();
+    } catch (e) {
+        console.error('error = ' + e);
+    }
 }
 
 // function to delete data
@@ -26,15 +60,9 @@ const deleteData = async (formData: FormData) => {
         const response = await fetch('https://67e5832118194932a5865cf4.mockapi.io/teams/' + id, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "Application/json"
             }
         });
-
-        if (!response.ok) {
-            console.log('error while deleting data');
-        }
-        revalidatePath('/teams');
-        redirect('/teams')
     } catch (e) {
         console.log('error deleting data', e)
     }
@@ -71,37 +99,33 @@ const updateData = async (id: string, formData: FormData) => {
     const stack = formData.get('stack') as string;
 
     try {
-        const response = await fetch(`https://67e5832118194932a5865cf4.mockapi.io/teams/${ id }` , {
-            method : "PUT" , 
-            headers : {
-                "Content-Type" : "application/json"
+        const response = await fetch(`https://67e5832118194932a5865cf4.mockapi.io/teams/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "Application/json"
             },
-            body : JSON.stringify({
+            body: JSON.stringify({
                 email,
-                name ,
-                stack , 
+                name,
+                stack,
                 avatar
             })
         })
 
-        if(!response.ok) {
+        if (!response.ok) {
             throw new Error('Failed Updating data' + response.status);
         }
+        const updatedData: teamData[] = await response.json();
 
-
-
-        const updatedData = await response.json();
-         console.log(updatedData);
-        revalidatePath('/teams');
-        redirect('/teams');
-    }catch {
-        console.error('Error updaing data');
-        redirect('/not-found');
-    }finally {
-        console.log('process terminate')
+        
+    } catch (e) {
+        console.error('Error updating data' + e);
+    } finally {
+        console.log('process terminate');
     }
 }
 
 export {
-    deleteData, getMemberDetail, updateData
+    deleteData, getMemberDetail, updateData,
+    newData
 }

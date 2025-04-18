@@ -1,14 +1,19 @@
 import Link from "next/link";
 import { deleteData , getMemberDetail} from "@/app/main-logic";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 
 const detailPage = async ({ params }: { params: { id: string } }) => {
-    const team = await getMemberDetail(params.id);
+    const { id } = await params;
+    const team = await getMemberDetail(id);
     const handleDelete = async () => {
         "use server"
         const formData = new FormData();
         formData.append('id', team?.id ?? ""); // use optional chaining and null coalish in case team.id is null
         await deleteData(formData);
+        revalidatePath('/teams');
+        redirect('/teams')
     }
 
     if (!team) {

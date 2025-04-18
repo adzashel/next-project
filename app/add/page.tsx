@@ -1,49 +1,30 @@
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation"
+import { newData } from "../main-logic"
+import { revalidatePath } from "next/cache"
+
+
 
 interface teamData {
-    name: string | null,
-    avatar: string | null,
-    email: string | null,
-    stack: string | null,
-    id: string | null
+    name: string 
+    avatar: string 
+    email: string 
+    stack: string 
+    id: string 
 }
 
 const apiEndpoint = "https://67e5832118194932a5865cf4.mockapi.io/teams";
 const add = () => {
-    const addNewMember = async (formData: FormData): Promise<teamData> => {
-        "use server"
-
-        const name = formData.get('name');
-        const avatar = formData.get("avatar");
-        const email = formData.get("email");
-        const stack = formData.get('stack');
-
-        const response = await fetch(apiEndpoint, {
-            method: "POST",
-            headers: {
-                "Content-Type": "Application/json"
-            },
-            body: JSON.stringify({
-                name,
-                avatar,
-                email,
-                stack
-            })
-        })
-
-        if (!response.ok) {
-            throw new Error('error while adding new data')
-        }
-        const newMember = await response.json();
-        revalidatePath('/teams');
-        redirect('/teams');
-    }
+   const handleAddData = async(formData : FormData) => {
+    'use server'
+    await newData(formData);
+    revalidatePath('/teams');
+    redirect('/teams')
+   } 
     return (
         <div className="container">
             <div className="form-container">
                 <p className="title">Add new member</p>
-                <form className="form" action={addNewMember}>
+                <form className="form" action={handleAddData}>
                     <div className="input-container">
                         <div className="input-group">
                             <label htmlFor="username">Name</label>

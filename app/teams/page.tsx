@@ -13,9 +13,6 @@ const apiEndpoint = "https://67e5832118194932a5865cf4.mockapi.io/teams";
 
 const teams = async () => {
   try {
-    // Remove setTimeout in production
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
     const team = await fetch(apiEndpoint);
 
     if (!team.ok) {
