@@ -9,27 +9,43 @@ import {
 } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 
+
+const link = [
+  {
+
+    name: "Home",
+    href: "/"
+  },
+  {
+    name: "Products",
+    href: "/product"
+  },
+  {
+    name: "Teams",
+    href: "/teams"
+  }
+]
+
 const Navigation = () => {
   const pathname = usePathname();
   return (
     <nav className='navbar-wrapper flex justify-center mt-3'>
-      <ul className='navbar flex gap-3 '>
-        <Link href="/" className={
-          pathname === "/" ? "active" : ""
-        }>Home</Link>
-        <Link href="/product" className={
-          pathname === "/product" ? "active" : ""
-        }>Products</Link>
-        <Link href="/teams" className={
-          pathname === "/teams" ? "active" : ""
-        }> Teams</Link>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
+      <ul className="navbar flex gap-3">
+      {link.map((item , i) => (
+        <Link href={item.href} key={ i } className={
+          pathname === `${item.name}` ? "active" : ""
+        }>{item.name}</Link>
+        
+      
+    ))}
+      <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
       </ul>
+      
     </nav>
   )
 }

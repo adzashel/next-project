@@ -1,10 +1,6 @@
-// "use client"
 import { updateData, getMemberDetail } from '@/app/main-logic';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import React from 'react';
-import Swal from 'sweetalert2';
-
 interface updateProps {
     params: { id: string }
 }
@@ -21,13 +17,16 @@ interface update {
 
 const update: React.FC<updateProps> = async ({ params }) => {
     const { id } = await params;
-    const memberDetail = await getMemberDetail( id )
+    const memberDetail = await getMemberDetail( id );
 
     const handleSubmit = async (formData: FormData) => {
         "use server"
+        
         await updateData(id, formData);
+       
         revalidatePath('/teams/' + id);
-        redirect('/teams/' + id)
+        redirect('/teams/' + id);
+
     }
 
     return (
@@ -57,7 +56,7 @@ const update: React.FC<updateProps> = async ({ params }) => {
                             </div>
                         </div>
                     </div>
-                    <button className="sign">Save Changes </button>
+                    <button className="sign">Save Changes</button>
                 </form>
             </div>
         </div>
