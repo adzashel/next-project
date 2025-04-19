@@ -29,7 +29,7 @@ interface detailProps {
 
 
 const detailPage: React.FC<detailProps> = async ({ params }) => {
-    const { id } = await params;
+    const { id } = params;
     const team = await getMemberDetail(id);
     const handleDelete = async () => {
         "use server"
@@ -57,7 +57,7 @@ const detailPage: React.FC<detailProps> = async ({ params }) => {
                 </div>
                 <div className="links">
                     {link.map((item) => (
-                        <Link className="btn btn--icon" href={item.href}>
+                        <Link className="btn btn--icon" href={item.href} key={ item. href }>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-github" viewBox="0 0 16 16">
                                 <path d={ item.path }/>
                             </svg>
