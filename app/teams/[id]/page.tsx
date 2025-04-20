@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { deleteData } from "@/app/main-logic";
+import { deleteData  , getMemberDetail} from "@/app/main-logic";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -22,24 +22,8 @@ const link = [
     }
 ]
 
-// Definisikan tipe untuk properti yang diterima komponen halaman
 
 
-const getMemberDetail = async (id: string) => {
-    try {
-        const response = await fetch(`https://67e5832118194932a5865cf4.mockapi.io/teams/${id}`);
-        if (!response.ok) {
-            console.log('error with status', response.status);
-        }
-        const detailData = await response.json();
-        return detailData;
-    } catch {
-        console.log("Failed Getting detail data");
-        return null;
-    } finally {
-        console.log('ok')
-    }
-}
 export default async function Page( props : {
     params : Promise<{ id : string } >
 }) {
