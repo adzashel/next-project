@@ -79,6 +79,7 @@ const getMemberDetail = async (id: string) => {
         return detailData;
     } catch {
         console.log("Failed Getting detail data");
+        
         return null;
     } finally {
         console.log('ok')

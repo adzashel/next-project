@@ -8,6 +8,7 @@ export default async function Page(props: {
 }) {
     const { id } = await props.params;
     const memberDetail = await getMemberDetail(id);
+    
 
     const handleSubmit = async (formData: FormData) => {
         "use server"
@@ -18,7 +19,6 @@ export default async function Page(props: {
         redirect('/teams/' + id);
 
     }
-
     return (
         <div className="container">
             <div className="form-container">
