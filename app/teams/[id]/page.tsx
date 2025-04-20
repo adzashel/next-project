@@ -23,7 +23,7 @@ const link = [
 ]
 
 // Definisikan tipe untuk properti yang diterima komponen halaman
-type updateProps = Promise<{ id : string }>
+type updateProps = Promise<{ id : string } >
 
 
 const getMemberDetail = async (id: string) => {
@@ -42,7 +42,7 @@ const getMemberDetail = async (id: string) => {
     }
 }
 // Gunakan NextPage dengan tipe yang benar
-export const generateMetaData = async ({ params } : { params : updateProps } ) => {
+export default async function Page({ params } : { params : updateProps } ) {
     const { id } = await params;
     const teamDetail =  await getMemberDetail(id)
     const handleDelete = async () => {
