@@ -23,7 +23,6 @@ const link = [
 ]
 
 // Definisikan tipe untuk properti yang diterima komponen halaman
-type updateProps = Promise<{ id : string } >
 
 
 const getMemberDetail = async (id: string) => {
@@ -41,10 +40,11 @@ const getMemberDetail = async (id: string) => {
         console.log('ok')
     }
 }
-// Gunakan NextPage dengan tipe yang benar
-export default async function Page({ params } : { params : updateProps } ) {
-    const { id } = await params;
-    const teamDetail =  await getMemberDetail(id)
+export default async function Page( props : {
+    params : Promise<{ id : string } >
+}) {
+    const { id } = await props.params;
+    const teamDetail = await getMemberDetail(id)
     const handleDelete = async () => {
         "use server"
         const formData = new FormData();
