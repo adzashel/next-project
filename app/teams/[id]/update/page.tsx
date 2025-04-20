@@ -1,23 +1,19 @@
 import { updateData, getMemberDetail } from '@/app/main-logic';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-interface updateProps {
-    params: { id: string }
-}
 
 
-
-
-
-const Page  = async ({ params } : updateProps ) => {
-    const { id } = params;
-    const memberDetail = await getMemberDetail( id );
+export default async function Page(props: {
+    params: Promise<{ id: string }>
+}) {
+    const { id } = await props.params;
+    const memberDetail = await getMemberDetail(id);
 
     const handleSubmit = async (formData: FormData) => {
         "use server"
-        
+
         await updateData(id, formData);
-       
+
         revalidatePath('/teams/' + id);
         redirect('/teams/' + id);
 
@@ -35,17 +31,17 @@ const Page  = async ({ params } : updateProps ) => {
                         </div>
                         <div className="input-group">
                             <label htmlFor="password">Github Image</label>
-                            <input type="text" defaultValue={ memberDetail?.avatar } name="avatar" id="password" placeholder="Enter ur github link" />
+                            <input type="text" defaultValue={memberDetail?.avatar} name="avatar" id="password" placeholder="Enter ur github link" />
 
                         </div>
                         <div className="input-group">
                             <label htmlFor="password">Email</label>
-                            <input type="text" defaultValue={ memberDetail?.email } name="email" id="password" placeholder="placeholder@gmail.com" />
+                            <input type="text" defaultValue={memberDetail?.email} name="email" id="password" placeholder="placeholder@gmail.com" />
 
                         </div>
                         <div className="input-group">
                             <label htmlFor="password">Stack</label>
-                            <input type="text" defaultValue={ memberDetail?.stack } name="stack" id="password" placeholder="Cloud Engineer" />
+                            <input type="text" defaultValue={memberDetail?.stack} name="stack" id="password" placeholder="Cloud Engineer" />
                             <div className="forgot">
                             </div>
                         </div>
@@ -57,4 +53,3 @@ const Page  = async ({ params } : updateProps ) => {
     )
 }
 
-export default Page;
