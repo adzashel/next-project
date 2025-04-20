@@ -1,6 +1,3 @@
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-
 
 const apiEndpoint = "https://67e5832118194932a5865cf4.mockapi.io/teams";
 interface teamData {
@@ -72,7 +69,7 @@ const deleteData = async (formData: FormData) => {
 
 // function to get detail from specific data
 
-const getMemberDetail = async (id: string): Promise<teamData | null> => {
+const getMemberDetail = async (id: string) => {
     try {
         const response = await fetch(`https://67e5832118194932a5865cf4.mockapi.io/teams/${id}`);
         if (!response.ok) {

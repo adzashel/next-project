@@ -5,18 +5,12 @@ interface updateProps {
     params: { id: string }
 }
 
-interface update {
-    name: string;
-    avatar: string;
-    email: string;
-    stack: string;
-    id: string;
-}
 
 
 
-const update: React.FC<updateProps> = async ({ params }) => {
-    const { id } = await params;
+
+const Page  = async ({ params } : updateProps ) => {
+    const { id } = params;
     const memberDetail = await getMemberDetail( id );
 
     const handleSubmit = async (formData: FormData) => {
@@ -63,4 +57,4 @@ const update: React.FC<updateProps> = async ({ params }) => {
     )
 }
 
-export default update;
+export default Page;
